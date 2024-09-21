@@ -1,7 +1,9 @@
 package exercise;
 
 import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeEach;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -30,16 +32,16 @@ class FileKVTest {
 
     // BEGIN
     @Test
-    void FileKVTest(){
+    void FileMethodsTest() {
         KeyValueStorage storage = new FileKV("src/test/resources/file", Map.of("key", "10"));
-        assertEquals(storage.get("key", "def"), "10" );
-        assertEquals(storage.get("ke2", "def"), "def" );
+        assertEquals(storage.get("key", "def"), "10");
+        assertEquals(storage.get("ke2", "def"), "def");
 
         storage.set("key2", "value2");
         storage.set("key", "value");
 
-        assertEquals(storage.get("key", "def"), "value" );
-        assertEquals(storage.get("key2", "def"), "value2" );
+        assertEquals(storage.get("key", "def"), "value");
+        assertEquals(storage.get("key2", "def"), "value2");
 
         storage.unset("key");
 
