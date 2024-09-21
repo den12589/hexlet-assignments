@@ -4,7 +4,7 @@ import lombok.Getter;
 
 // BEGIN
 @Getter
-public class LabelTag implements TagInterface{
+public class LabelTag implements TagInterface {
     private String label;
     private TagInterface tagInterface;
 
@@ -13,7 +13,7 @@ public class LabelTag implements TagInterface{
         return "<label>Press Submit" + tagInterface.render() + "</label>";
     }
 
-    public LabelTag(String label, TagInterface tagInterface){
+    public LabelTag(String label, TagInterface tagInterface) {
         this.label = label;
         this.tagInterface = tagInterface;
     }

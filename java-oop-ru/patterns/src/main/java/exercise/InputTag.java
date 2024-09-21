@@ -4,16 +4,16 @@ import lombok.Getter;
 
 // BEGIN
 @Getter
-public class InputTag implements TagInterface{
+public class InputTag implements TagInterface {
     private String type;
     private String value;
 
     @Override
     public String render() {
-        return "<input type=" + getType()  + " value=" + getValue() + ">";
+        return "<input type=" + getType() + " value=" + getValue() + ">";
     }
 
-    public InputTag(String type, String value){
+    public InputTag(String type, String value) {
         this.type = type;
         this.value = value;
     }
