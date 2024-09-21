@@ -10,7 +10,7 @@ public class InputTag implements TagInterface {
 
     @Override
     public String render() {
-        return "<input type=" + getType() + " value=" + getValue() + ">";
+        return "<input type=\"" + type + "\" value=\"" + value + "\">";
     }
 
     public InputTag(String type, String value) {
