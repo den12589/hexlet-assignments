@@ -32,7 +32,7 @@ class FileKVTest {
 
     // BEGIN
     @Test
-    void FileMethodsTest() {
+    void fileMethodsTest() {
         KeyValueStorage storage = new FileKV("src/test/resources/file", Map.of("key", "10"));
         assertEquals(storage.get("key", "def"), "10");
         assertEquals(storage.get("ke2", "def"), "def");
