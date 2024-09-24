@@ -1,7 +1,12 @@
 package exercise;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Objects;
+
 
 // BEGIN
 public class Validator {
@@ -30,7 +35,7 @@ public class Validator {
             List<String> errors = new ArrayList<>();
 
             if (field.isAnnotationPresent(NotNull.class) && Objects.isNull(value)) {
-                errors = result.containsKey(field.getName()) ? result.get(name) : new ArrayList<>();
+                errors = result.containsKey(name) ? result.get(name) : new ArrayList<>();
                 errors.add(nullStr);
             }
 
