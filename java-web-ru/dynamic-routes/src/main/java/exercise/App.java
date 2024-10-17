@@ -27,9 +27,13 @@ public final class App {
             Map<String, String> resultMap = null;
             for (Map<String, String> map : COMPANIES) {
                 var mapId = map.get("id");
-                if (mapId.equals(id)) resultMap = map;
+                if (mapId.equals(id)) {
+                    resultMap = map;
+                }
             }
-            if (Objects.isNull(resultMap)) throw new NotFoundResponse("Company not found");
+            if (Objects.isNull(resultMap)) {
+                throw new NotFoundResponse("Company not found");
+            }
         });
         // END
 
