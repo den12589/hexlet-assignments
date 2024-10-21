@@ -5,7 +5,7 @@ import io.javalin.http.NotFoundResponse;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 
 // BEGIN
 
@@ -23,17 +23,16 @@ public final class App {
 
         // BEGIN
         app.get("/companies/{id}", ctx -> {
-            var id = ctx.pathParamAsClass("id", String.class).get();
-            Map<String, String> resultMap = null;
+            String id = ctx.pathParam("id");
+
             for (Map<String, String> map : COMPANIES) {
-                var mapId = map.get("id");
-                if (mapId.equals(id)) {
-                    resultMap = map;
+                if (map.get("id").equals(id)) {
+                    ctx.json(map);
+                    return;
                 }
             }
-            if (Objects.isNull(resultMap)) {
-                throw new NotFoundResponse("Company not found");
-            }
+
+            throw new NotFoundResponse("Company not found");
         });
         // END
 
