@@ -41,7 +41,7 @@ public final class App {
         });
 
         app.get("/", ctx -> {
-            ctx.result("open something like (you can change id): /companies/5");
+            ctx.result("openт something like (you can change id): /companies/5");
         });
 
         return app;
