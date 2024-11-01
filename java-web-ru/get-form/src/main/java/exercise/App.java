@@ -37,6 +37,8 @@ public final class App {
                         result.add(user);
                     }
                 }
+            } else {
+               result.addAll(USERS);
             }
             var page = new UsersPage(result, term);
             ctx.render("users/index.jte", model("usersPage", page));
