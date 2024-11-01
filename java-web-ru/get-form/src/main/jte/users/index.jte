@@ -5,7 +5,7 @@
 content = @`
     <main>
         <form action="/users" method="get">
-            <input type="search" required name="term" value="${usersPage.getTerm()}">
+            <input type="search" required name="term">
             <input type="submit" value="Искать">
         </form>
         @if(!usersPage.getUsers().isEmpty())
