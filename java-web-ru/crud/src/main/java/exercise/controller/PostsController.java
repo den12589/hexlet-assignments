@@ -13,18 +13,20 @@ public class PostsController {
 
     // BEGIN
     public static void index(Context ctx) {
-        int pageNumber = ctx.pathParamAsClass("page", Integer.class).get();
-        if (pageNumber <= 0 ) pageNumber = 1;
-        var posts = PostRepository.findAll(pageNumber, 5);
-        var page = new PostsPage(posts, pageNumber);
-        ctx.render("posts/index.jte", model("page", page));
+        int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+        if (page <= 0) page = 1;
+        var posts = PostRepository.findAll(page, 5);
+        var pageRender = new PostsPage(posts, page);
+        //ctx.result(ctx.fullUrl());
+        ctx.render("posts/index.jte", model("page", pageRender));
+
     }
 
     public static void show(Context ctx) {
         var id = ctx.pathParamAsClass("id", Long.class).get();
-        var post = PostRepository.find(id).orElseThrow(()-> new NotFoundResponse("Page not found"));
+        var post = PostRepository.find(id).orElseThrow(() -> new NotFoundResponse("Page not found"));
         var page = new PostPage(post);
         ctx.render("posts/show.jte", model("page", page));
-        }
     }
-    // END
+}
+// END

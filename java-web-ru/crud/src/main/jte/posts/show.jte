@@ -8,5 +8,5 @@ content = @`
     <p>
         ${page.getPost().getBody()}
     </p>
-    <a href="${NamedRoutes.postsPath(1)}">Все посты</a>
+    <a href="${NamedRoutes.postsPath()}">Все посты</a>
 ` )

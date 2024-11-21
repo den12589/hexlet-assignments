@@ -7,20 +7,16 @@ public class NamedRoutes {
     }
 
     // BEGIN
-    public static String postsPath(String pageNumber) {
-        return "/posts/" + pageNumber;
+
+    public static String postsPath() {
+        return "/posts";
+    }
+    public static String postsPath(String id) {
+        return "/posts/" + id;
     }
 
-    public static String postsPath(Integer pageNumber) {
-        return postsPath(String.valueOf(pageNumber));
-    }
-
-    public static String postPath(String id) {
-        return "/post/" + id;
-    }
-
-    public static String postPath(Long id) {
-        return postPath(String.valueOf(id));
+    public static String postsPath(Long id) {
+        return postsPath(String.valueOf(id));
     }
     // END
 }
