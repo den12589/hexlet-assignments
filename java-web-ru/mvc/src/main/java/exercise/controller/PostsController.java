@@ -77,6 +77,7 @@ public class PostsController {
 
         } catch (ValidationException e) {
             var page = new EditPostPage(post, e.getErrors());
+            ctx.status(422);
             ctx.render("posts/edit.jte",model("page", page));
         }
     }
