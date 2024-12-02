@@ -21,20 +21,21 @@ public class UsersController {
 
     // BEGIN
     public static void create(Context ctx){
-        var firstName = ctx.pathParam("firstName");
-        var lastName = ctx.pathParam("lastName");
-        var email = ctx.pathParam("email");
-        var password = ctx.pathParam("password");
+        var firstName = ctx.formParam("firstName");
+        var lastName = ctx.formParam("lastName");
+        var email = ctx.formParam("email");
+        var password = ctx.formParam("password");
         var token = Security.generateToken();
         var user = new User(firstName, lastName, email, password, token);
         UserRepository.save(user);
         ctx.redirect(NamedRoutes.userPath(user.getId()));
+        ctx.cookie("token", token);
     }
 
     public static void show(Context ctx) {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var user = UserRepository.find(id).orElseThrow(() -> new NotFoundResponse("user not found"));
-        var token = ctx.cookie("token");
+        var token = String.valueOf(ctx.cookie("token"));
         if(Objects.equals(token, user.getToken())) {
             var page =  new UserPage(user);
             ctx.render("users/show.jte", model("page", page));
