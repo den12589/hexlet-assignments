@@ -54,10 +54,10 @@ public class PostsController {
     }
 
     // BEGIN
-    public static void edit(Context ctx){
+    public static void edit(Context ctx) {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var post = PostRepository.find(id).orElseThrow(() -> new NotFoundResponse("Post not found"));
-        var page = new EditPostPage(post);
+        var page = new EditPostPage(post.getId(), post.getName(), post.getBody());
         ctx.render("posts/edit.jte", model("page", page));
     }
 
@@ -76,9 +76,11 @@ public class PostsController {
             ctx.redirect(NamedRoutes.postsPath());
 
         } catch (ValidationException e) {
-            var page = new EditPostPage(post, e.getErrors());
+            var name = ctx.formParam("name");
+            var body = ctx.formParam("body");
+            var page = new EditPostPage(id, name, body, e.getErrors());
             ctx.status(422);
-            ctx.render("posts/edit.jte",model("page", page));
+            ctx.render("posts/edit.jte", model("page", page));
         }
     }
     // END
